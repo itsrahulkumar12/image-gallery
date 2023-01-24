@@ -7,7 +7,7 @@ import ImageSearch from "./components/ImageSearch";
 function App() {
   const [images, setImages] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [term, setTerm] = useState("mountains");
+  const [term, setTerm] = useState("meal");
   const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
