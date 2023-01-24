@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
+import Header from "./components/Header";
 import ImageCard from "./components/ImageCard";
 import ImageSearch from "./components/ImageSearch";
 
@@ -7,6 +8,7 @@ function App() {
   const [images, setImages] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [term, setTerm] = useState("mountains");
+  //const [darkMode,setDarkMode] = useState(false);
 
   useEffect(() => {
     fetch(
@@ -21,7 +23,9 @@ function App() {
   }, [term]);
 
   return (
-    <div className="container mx-auto p-5">
+    <div>
+      <div className="container mx-auto p-5">
+      <Header />
       <ImageSearch searchText={text => setTerm(text)} />
 
       {!isLoading && images.length == 0 && <h1 className="text-5xl text-center font-semibold text-red-600 mx-auto mt-32">No Images Found !! </h1>}
@@ -31,6 +35,7 @@ function App() {
           return <ImageCard key={image.id} image={image} />;
         })}
       </div>}
+    </div>
     </div>
   );
 }
