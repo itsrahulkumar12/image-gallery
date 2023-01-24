@@ -27,16 +27,18 @@ function App() {
   };
 
   return (
-    <div className={darkMode ? "dark h-[100vh]" : ""}>
+    <div className={darkMode ? "dark" : ""}>
       <div className="container mx-auto p-5">
         <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
         <ImageSearch searchText={(text) => setTerm(text)} />
 
+          <div className={!isLoading && images.length == 0 ? "h-[54.7vh] overflow-hidden" : ""}>
           {!isLoading && images.length == 0 && (
             <h1 className="text-5xl text-center font-semibold text-red-600 mx-auto mt-32">
               No Images Found !!
             </h1>
           )}
+          </div>
         
         {isLoading ? (
           <h1 className="text-6xl text-center text-teal-500 mx-auto mt-32">
