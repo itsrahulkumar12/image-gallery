@@ -8,7 +8,7 @@ function App() {
   const [images, setImages] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [term, setTerm] = useState("mountains");
-  //const [darkMode,setDarkMode] = useState(false);
+  const [darkMode,setDarkMode] = useState(false);
 
   useEffect(() => {
     fetch(
@@ -22,10 +22,14 @@ function App() {
       .catch((err) => console.log(err));
   }, [term]);
 
+  const toggleDarkMode = () => {
+      setDarkMode(prevDarkMode => !prevDarkMode)
+  }
+
   return (
-    <div>
+    <div className={darkMode ? "dark" : ""}>
       <div className="container mx-auto p-5">
-      <Header />
+      <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       <ImageSearch searchText={text => setTerm(text)} />
 
       {!isLoading && images.length == 0 && <h1 className="text-5xl text-center font-semibold text-red-600 mx-auto mt-32">No Images Found !! </h1>}
